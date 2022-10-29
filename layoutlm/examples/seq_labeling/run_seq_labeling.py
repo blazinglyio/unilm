@@ -39,7 +39,6 @@ from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
 from transformers import (
     WEIGHTS_NAME,
-    AdamW,
     BertConfig,
     BertForTokenClassification,
     BertTokenizer,
@@ -48,6 +47,7 @@ from transformers import (
     RobertaTokenizer,
     get_linear_schedule_with_warmup,
 )
+from torch.optim import AdamW
 
 from layoutlm import FunsdDataset, LayoutlmConfig, LayoutlmForTokenClassification
 
@@ -146,7 +146,7 @@ def train(  # noqa C901
             "weight_decay": 0.0,
         },
     ]
-    optimizer = AdamW(
+    optimizer = torch.optim.AdamW(
         optimizer_grouped_parameters, lr=args.learning_rate, eps=args.adam_epsilon
     )
     scheduler = get_linear_schedule_with_warmup(

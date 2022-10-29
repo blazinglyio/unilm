@@ -14,7 +14,6 @@ from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
 from transformers import (
     WEIGHTS_NAME,
-    AdamW,
     BertConfig,
     BertForSequenceClassification,
     BertTokenizerFast,
@@ -23,6 +22,7 @@ from transformers import (
     RobertaTokenizer,
     get_linear_schedule_with_warmup,
 )
+from torch.optim import AdamW
 
 from layoutlm import LayoutlmConfig, LayoutlmForSequenceClassification
 from layoutlm.data.rvl_cdip import CdipProcessor, load_and_cache_examples
